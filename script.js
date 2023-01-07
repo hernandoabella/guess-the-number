@@ -1,47 +1,50 @@
-// ADIVINA EL NÚMERO
+// ADIVINA EL NÚMERO 
 
+function modoOscuro() {
+    document.getElementsByClassName('container')[0].classList.toggle('modo-oscuro');
+    document.getElementsByClassName('dark-mode-btn')[0].classList.toggle('modo-oscuro1');
+    document.querySelector('h1').classList.toggle('modo-oscuro');
+    document.getElementsByClassName('hamburger')[0].classList.toggle('modo-oscuro');
+    document.getElementsByClassName('active')[0].classList.toggle('modo-oscuro');
+}
 
-//Generating a random number from 1-500
-let randomNumber = parseInt((Math.random() * 500) + 1);
-//make variables
-const submit = document.querySelector('#user_guess');
+// Generar un número aleatorio entre 1 y 500
+let randomNumber = parseInt((Math.random() * 100) + 1);
+
+const submit = document.querySelector('#subt');
 const userInput = document.querySelector('#guessField');
 const guessSlot = document.querySelector('.guesses');
 const remaining = document.querySelector('.lastResult');
 const startOver = document.querySelector('.resultParas');
 const lowOrHi = document.querySelector('.lowOrHi');
 const p = document.createElement('p');
-//hold the prev values of user guesses.
 let previousGuesses = [];
-//counting number of guess by the user.
-let numGuesses = 1;
+let numGuesses = 0;
 let playGame = true;
-//main driver code
+
 if (playGame){
-    user_guess.addEventListener('click', function(e){
+    subt.addEventListener('click', function(e){
         e.preventDefault();
-        //Getting the number from user
+        //Grab guess from user
         const guess = parseInt(userInput.value);
         validateGuess(guess);
     });
 }
-//if the user enters wrong input, giving alert messages.
+
 function validateGuess(guess){
-  //check if the number is Null
     if (isNaN(guess)){
-        alert('Not a valid number');
+        displayMessage(`Por favor ingresa un número válido`);
     } else if (guess < 1) {
-        alert('Enter number greater than 1');
-    } else if (guess > 500){
-        alert('Please enter a number less than 500')
+        displayMessage(`Por favor ingresa un número mayor que 1`);
+    } else if (guess > 100){
+        displayMessage(`Por favor ingresa un número menor que 100`);
     } else {
         //Keep record of number of attempted guesses
-        //push it to empty array created above
         previousGuesses.push(guess);
-        //Check if game is over
-        if (numGuesses === 11){
+        //Check to see if game is over
+        if (numGuesses === 10){
             displayGuesses(guess);
-            displayMessage(`Game Over! Number was ${randomNumber}`);
+            displayMessage(`😐 ¡Perdiste! El número era ${randomNumber}`);
             endGame();
         } else {
         //Display previous guessed numbers
@@ -53,49 +56,46 @@ function validateGuess(guess){
 }
 
 function checkGuess(guess){
-    //Display clue if guess is high or low
+    // Muestra una pista de si el número adivinado es demasiado alto o demasiado bajo
     if (guess === randomNumber){
-        displayMessage('Great !! you guessed it right.');
+        displayMessage(`🥳 ¡Felicidades lo has adivinado!`);
         endGame();
     } else if (guess < randomNumber) {
-        displayMessage("It's low, Try Again");
+        displayMessage(`¡Demasiado bajo!`);
     } else if (guess > randomNumber) {
-        displayMessage("It's high, Try Again");
+        displayMessage(`¡Demasiado alto!`);
     }
 }
-//details of the guessed number by user
+
 function displayGuesses(guess){
     userInput.value = '';
     guessSlot.innerHTML += `${guess}  `;
     numGuesses++
     remaining.innerHTML = `${11 - numGuesses}  `;
 }
-//display after each guess
+
 function displayMessage(message){
-        lowOrHi.innerHTML = `<h1>${message}</h1>`
+        lowOrHi.innerHTML = `<p>${message}</p>`
 }
 
 function endGame(){
     //Clear user input
     userInput.value = '';
-    //Disable user input button after chances are over
+    //Disable user input button
     userInput.setAttribute('disabled', '');
-    //disable the submit button
-    submit.setAttribute('disabled', '');
     //Display Start new Game Button
-        p.classList.add('button');
-        p.innerHTML = `<h1 id="newGame">PLAY AGAIN</h1>`
+    p.classList.add('button');
+    p.innerHTML = `<p id="newGame">Nuevo Juego</p>`
     startOver.appendChild(p);
     playGame = false;
     newGame();
 }
-//enable the options which we disabled in endgame fn
-function newGame(){
 
+function newGame(){
     const newGameButton = document.querySelector('#newGame');
     newGameButton.addEventListener('click', function(){
-        //re-initialise eveything to fresh start
-        randomNumber = parseInt((Math.random()*500)+1);
+        // Elegir un nuevo número aleatorio
+        randomNumber = parseInt((Math.random() * 100) + 1);
         previousGuesses = [];
         numGuesses = 1;
         guessSlot.innerHTML = '';
@@ -104,8 +104,10 @@ function newGame(){
         userInput.removeAttribute('disabled');
         startOver.removeChild(p);
         playGame = true;
-        location.reload();
     })
 }
-//you can always upgrade the game! let me know what innovative idea you can put into this
-//Good Luck
+//Allow to restart game with restart button
+//Change DIV to a form so it can accept the enter key
+
+//NOTES:
+//NaN != NaN

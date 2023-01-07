@@ -1,66 +1,180 @@
+@import url('https://fonts.googleapis.com/css?family=Syne|Alata');
+
 :root {
-  
+  --blanco: #F4F4F8;
+  --negro: #333;
+  --gris-claro: #e0e0e0;
+  --gris-oscuro: #999;
+  --verde-hacker: #20c20e;
+  --fuente-titulo: 'Alata';
+  --fuente-texto: 'Syne';
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  height: 100%;
+  margin: 0 auto;
+}
+
+header {
+  padding: 15px;
+  border-radius: 25px 25px 0px 0px;
+  text-transform: capitalize;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.hamburger {
+  color: var(--negro);
+}
+
+.dark-mode-btn {
+  background: var(--negro);
+  width: 15px;
+  height: 15px;
+  cursor: pointer;
+  border-radius: 25px;
+}
+
+.modo-oscuro {
+  background: #333 !important;
+  color: var(--verde-hacker) !important;
+}
+
+.modo-oscuro1 {
+  background: var(--verde-hacker) !important;
+  color: #333 !important;
+}
+
+.titulo h1 {
+  text-align: center;
+  font-size: .8em;
+  font-family: var(--fuente-titulo);
+}
+
+html {
+  font-family: sans-serif;
 }
 
 body {
-  background-color: #84a9ac;
-  font-family: 'DM Sans', sans-serif;
-
+  background-image: linear-gradient(180deg, #2af598 0%, #009efd 100%);
 }
 
-p {
-  color: #204051;
-  font-size: 20px;
+.container {
+  width: 300px;
+  height: 500px;
+  background: var(--blanco);
+  border-radius: 25px;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  top: 50%;
+  left: 50%;
+  font-family: var(--fuente-texto);
+  box-shadow: 0px 10px 15px -3px rgba(0,0,0,0.1);
+}
+
+.alerta {
   text-align: center;
 }
 
-h1 {
-  font-size: 4rem;
-  color: #204051;
-  margin-bottom: 0;
+.resultParas {
+  padding: 10px;
+  font-size: .8em;
+}
+
+.resultParas p {
+  font-weight: bold;
+}
+
+.resultFlex {
+  display: flex;
+  justify-content: space-around;
+}
+
+#subt {
+  background-color: #2af598;
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+}
+
+form {
+  border-style: none;
   text-align: center;
+  display: flex;
+  padding: 20px;
+  width: 100%;
+  position: absolute;
 }
 
-a {
-  color: #fff;
-  text-decoration: none;
+form input:nth-child(1){
+  width: 100%;
+  text-align: center;
+  border: none;
+  box-shadow: 0px 10px 15px -3px rgba(0,0,0,0.1);
 }
 
-a:hover {
-  color: #204051;
-}
-.input-group{
-  height: 70px;
-}
-.guessSubmit {
-
-  background-color: #204051;
-  color: #fff;
-  border-radius: 45px;
+.centrar {
+  position: absolute;
+  transform: translate(-50%, -100%);
+  left: 50%;
+  top: 50%;
+  width: 100%;
 }
 
-.lastResult {
-  color: white;
-  padding: 7px;
+.lowOrHi {
+  font-size: 1em;
+  margin-top: 20px;
+}
+
+#newGame {
+  text-align: center;
+  cursor: pointer;
+  margin-top: 70px;
+  font-size: 2em;
 }
 
 .guesses {
-  color: white;
-  padding: 7px;
-}
-.form-control{
-
-  font-size: 4rem;
-  height: 70px;
-}
-.n {
-  font-size: 2rem;
-  margin-top: 5%;
-  margin-bottom: 5%;
-  color: #fff;
+  font-family: var(--fuente-titulo);
 }
 
-.guessField {
-  color: #204051;
-  font-weight: bold;
+.lastResult {
+  font-family: var(--fuente-titulo);
+}
+
+
+#wrapper {
+  
+}
+
+.bar-icons {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.bar-icons div {
+  cursor: pointer;
+}
+
+.bar-icons i.active{
+  color: var(--negro);
+}
+
+.bar-icons i {
+  color: var(--gris-oscuro);
+}
+
+footer {
+  position: absolute;
+  bottom: 0px;
+  width: 100%;
+  border-radius: 0px 0px 25px 25px;
+  padding: 10px;
 }
